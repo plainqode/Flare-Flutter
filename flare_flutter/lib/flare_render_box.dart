@@ -101,6 +101,7 @@ abstract class FlareRenderBox extends RenderBox {
     dispose();
   }
 
+  @override
   void dispose() {
     updatePlayState();
     _unload();
@@ -164,10 +165,10 @@ abstract class FlareRenderBox extends RenderBox {
     if (isPlaying) {
       // Paint again
       if (_frameCallbackID != -1) {
-        SchedulerBinding.instance?.cancelFrameCallbackWithId(_frameCallbackID);
+        SchedulerBinding.instance.cancelFrameCallbackWithId(_frameCallbackID);
       }
       _frameCallbackID =
-          SchedulerBinding.instance?.scheduleFrameCallback(_beginFrame) ?? -1;
+          SchedulerBinding.instance.scheduleFrameCallback(_beginFrame) ?? -1;
     }
 
     final Canvas canvas = context.canvas;
@@ -269,7 +270,7 @@ abstract class FlareRenderBox extends RenderBox {
     } else {
       _lastFrameTime = _notPlayingFlag;
       if (_frameCallbackID != -1) {
-        SchedulerBinding.instance?.cancelFrameCallbackWithId(_frameCallbackID);
+        SchedulerBinding.instance.cancelFrameCallbackWithId(_frameCallbackID);
       }
     }
   }
